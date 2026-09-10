@@ -1,1 +1,1 @@
-.dashboard-head>div:first-child>p{display:none}.dashboard-head{align-items:end}.dashboard-head .eyebrow{margin-bottom:10px}.dashboard-head h1{margin-bottom:0}.dashboard-head .head-actions{padding-bottom:2px}@media(max-width:900px){.dashboard-head{align-items:start}.dashboard-head .head-actions{padding-bottom:0}}
+.dashboard-head{align-items:end}.dashboard-head .eyebrow{margin-bottom:6px}.dashboard-head h1{margin-bottom:0}.dashboard-head .head-actions{padding-bottom:2px}@media(max-width:900px){.dashboard-head{align-items:start}.dashboard-head .head-actions{padding-bottom:0}}
