@@ -46,6 +46,25 @@
       <article class="card mini-table-card"><div class="card-head"><div><span class="section-label">FINANCEIRO</span><h2>Títulos em aberto</h2></div><button class="link-btn" onclick="route('financial')">Ver todos →</button></div><div class="mini-table">${titleRows(fin)}</div></article>
     </div>`;
   }
-  const originalModuleView=window.moduleView;window.moduleView=function(m){if(m.id==='financial')return originalModuleView(m);return `<div class="module-head"><div><div class="eyebrow">MÓDULO · ${m.group.toUpperCase()}</div><h1>${m.title}</h1><p>${m.desc}</p></div><div class="head-actions"><button class="btn ghost">Exportar</button><button class="btn primary" onclick="notifyDemo()">${icon('plus')} Novo registro</button></div></div><div class="module-kpis"><article class="card"><span>Registros</span><strong>0</strong><small>Base preparada</small></article><article class="card"><span>Ativos</span><strong>0</strong><small>Sem dados cadastrados</small></article><article class="card"><span>Hoje</span><strong>0</strong><small>Nenhuma movimentação</small></article></div><div class="module-grid">${cardsFor(current).map(c=>`<article class="card module-card">${icon(c.i)}<div><h3>${c.t}</h3><p>${c.p}</p></div><button class="btn ghost" onclick="notifyDemo()">Acessar →</button></article>`).join('')}</div>`};
+  const moduleSchemas={
+    purchases:{kpis:[['Pedidos de compra','0','nenhum registrado'],['Fornecedores','0','cadastro pendente'],['Em recebimento','0','aguardando']],columns:['Pedido','Fornecedor','Itens','Valor','Status']},
+    stock:{kpis:[['Produtos','0','catálogo vazio'],['Estoque crítico','0','abaixo do mínimo'],['Movimentações hoje','0','entradas e saídas']],columns:['Produto','SKU','Saldo','Disponível','Mínimo','Status']},
+    fiscal:{kpis:[['Documentos','0','emitidos'],['Pendentes','0','aguardando emissão'],['Cancelados','0','este mês']],columns:['Documento','Tipo','Cliente/Fornecedor','Valor','Status']},
+    logistics:{kpis:[['Entregas','0','em rota'],['Rotas ativas','0','planejadas'],['Ocorrências','0','registradas']],columns:['Pedido','Rota','Motorista','Previsão','Status']},
+    registrations:{kpis:[['Cadastros','0','base compartilhada'],['Pendentes de revisão','0','sem itens'],['Duplicados','0','nenhum encontrado']],columns:['Nome','Tipo','Documento','Status']},
+    reports:{kpis:[['Relatórios salvos','0','nenhum criado'],['Exportações','0','este mês'],['Agendados','0','nenhum ativo']],columns:['Relatório','Período','Módulo','Gerado em']},
+    users:{kpis:[['Usuários','0','cadastrados'],['Perfis','0','configurados'],['Sessões ativas','0','agora']],columns:['Usuário','Perfil','Último acesso','Status']}
+  };
+  const originalModuleView=window.moduleView;window.moduleView=function(m){
+    if(m.id==='financial')return originalModuleView(m);
+    const s=moduleSchemas[m.id]||{kpis:[['Registros','0','base preparada'],['Ativos','0','sem dados cadastrados'],['Hoje','0','nenhuma movimentação']],columns:['Item','Status']};
+    return `<div class="module-head"><div><div class="eyebrow">MÓDULO · ${esc(m.group.toUpperCase())}</div><h1>${esc(m.title)}</h1><p>${esc(m.desc)}</p></div><div class="head-actions"><button class="btn ghost">Exportar</button><button class="btn primary" onclick="notifyDemo()">${icon('plus')} Novo registro</button></div></div>
+    <div class="kpis module-kpis-row">${s.kpis.map(([label,value,foot])=>kpi(label,value,foot,'neutral')).join('')}</div>
+    <article class="card">
+      <div class="card-head"><div><span class="section-label">${esc(m.title.toUpperCase())}</span><h2>Registros</h2></div></div>
+      <div class="filter-bar"><input type="search" placeholder="Pesquisar..." disabled><button class="filter" disabled>Status</button><button class="filter" disabled>Período</button><span class="filter-bar-hint">Filtros disponíveis após o primeiro cadastro</span></div>
+      <div class="data-table"><div class="data-table-head cols-${s.columns.length}">${s.columns.map(c=>`<span>${esc(c)}</span>`).join('')}</div><div class="empty-state">Nenhum registro cadastrado ainda.</div></div>
+    </article>`;
+  };
   const originalRender=window.render;window.render=function(){originalRender();document.querySelectorAll('.module-icon').forEach(el=>{if(!el.querySelector('svg'))el.outerHTML=icon(el.textContent.trim())});document.querySelectorAll('.mobile-nav button').forEach(b=>{const label=b.querySelector('span')?.textContent;const map={Início:'dashboard',Comercial:'commercial',Estoque:'stock',Financeiro:'financial',Fiscal:'fiscal'};const strong=b.querySelector('b');if(map[label]&&strong)strong.outerHTML=icon(map[label])})};
 })();

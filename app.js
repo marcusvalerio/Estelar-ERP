@@ -84,21 +84,6 @@ function moduleView(m){
   return `<div class="module-head"><div><div class="eyebrow">MÓDULO · ${m.group.toUpperCase()}</div><h1>${m.title}</h1><p>${m.desc}</p></div></div>`;
 }
 
-function cardsFor(id){
-  const map={
-    commercial:[['CL','Clientes','Base comercial e relacionamento.'],['PD','Pedidos','Pedidos de venda e acompanhamento.'],['OR','Orçamentos','Propostas e oportunidades.']],
-    purchases:[['FO','Fornecedores','Cadastro e relacionamento.'],['CO','Cotações','Cotações e comparativos.'],['PC','Pedidos de compra','Compras e recebimentos.']],
-    stock:[['PR','Produtos','Catálogo e dados fiscais.'],['SA','Saldos','Posição de estoque.'],['MV','Movimentações','Entradas, saídas e ajustes.']],
-    financial:[['CP','Contas a pagar','Obrigações e pagamentos.'],['CR','Contas a receber','Recebimentos e cobranças.'],['CX','Caixa','Fluxo e posição financeira.']],
-    fiscal:[['NF','NF-e','Documentos fiscais simulados.'],['CT','CT-e','Conhecimentos de transporte simulados.'],['MD','MDF-e','Manifestos eletrônicos simulados.']],
-    logistics:[['TR','Transportes','Operações e cargas.'],['VI','Viagens','Planejamento e acompanhamento.'],['EN','Entregas','Status e ocorrências.']],
-    registrations:[['CL','Clientes','Cadastros de clientes.'],['FO','Fornecedores','Cadastros de fornecedores.'],['PR','Produtos','Produtos e serviços.']],
-    reports:[['BI','Indicadores','Visão gerencial.'],['OP','Operacional','Relatórios de operação.'],['FI','Financeiro','Análises financeiras.']],
-    users:[['US','Usuários','Usuários do sistema.'],['PF','Perfis','Perfis de acesso.'],['LG','Auditoria','Histórico de ações.']]
-  };
-  return (map[id]||[]).map(x=>({i:x[0],t:x[1],p:x[2]}));
-}
-
 function settings(){
   const theme=localStorage.getItem('oculto-theme')||'system';
   return `<div class="module-head"><div><div class="eyebrow">ADMINISTRAÇÃO</div><h1>Configurações</h1><p>Preferências gerais do ESTELAR ERP.</p></div></div>
