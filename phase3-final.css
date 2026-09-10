@@ -1,4 +1,4 @@
-/* OCULTO ERP — Phase 3 final visual/interaction layer */
+/* ESTELAR-ERP — Phase 3 final visual/interaction layer */
 .module-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 28px;color:currentColor}
 .module-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .nav button .module-icon{margin-right:10px}.module-tile>.module-icon,.module-card>.module-icon{margin-right:14px}
@@ -6,22 +6,6 @@
 .mobile-nav button .module-icon{width:24px;height:24px;flex-basis:24px}.mobile-nav button .module-icon svg{width:18px;height:18px}
 .btn .module-icon{width:18px;height:18px;flex-basis:18px;margin-right:6px}.btn .module-icon svg{width:17px;height:17px}
 .phase3-ab-chart{margin-top:10px}.phase3-ab-chart .ab-chart{margin:0}
-/* Semantic colors are reserved for operational states; brand remains monochrome. */
-.status-icon.blue,.kpi-dot.neutral{background:#AFC9DC}.status-icon.teal{background:#6E9AAF}.status-icon.gold{background:#C9A94B}.status-icon.soft{background:#D9DEE2}.kpi-dot.up{background:#5D8A69}.positive{color:#4E7A5B}
-/* Light mode: white/graphite hierarchy with the palette gray as a quiet structural layer. */
-html[data-theme="light"] body,body.theme-light{background:#F5F5F5;color:#0A0A0B}
-html[data-theme="light"] .sidebar,body.theme-light .sidebar{background:#F5F5F5;border-color:#D9DEE2}
-html[data-theme="light"] .topbar,body.theme-light .topbar{background:#F5F5F5;border-color:#D9DEE2}
-html[data-theme="light"] .card,body.theme-light .card{background:#FFFFFF;border-color:#D9DEE2}
-html[data-theme="light"] .mobile-nav,body.theme-light .mobile-nav{background:#FFFFFF;border-color:#D9DEE2}
-html[data-theme="light"] .mobile-nav button.active,body.theme-light .mobile-nav button.active{background:#D9DEE2}
-html[data-theme="light"] .select-btn,body.theme-light .select-btn{background:#D9DEE2;color:#0A0A0B;border-color:#D9DEE2}
-html[data-theme="light"] .module-tile:hover,body.theme-light .module-tile:hover{background:#F0F4F8}
-/* Dark mode follows the OCULTO core palette. */
-html[data-theme="dark"] body,body.theme-dark{background:#0A0A0B;color:#F5F5F5}
-html[data-theme="dark"] .sidebar,body.theme-dark .sidebar{background:#0A0A0B;border-color:#1A1A1C}
-html[data-theme="dark"] .topbar,body.theme-dark .topbar{background:#0A0A0B;border-color:#1A1A1C}
-html[data-theme="dark"] .card,body.theme-dark .card{background:#1A1A1C;border-color:#303033}
-html[data-theme="dark"] .mobile-nav,body.theme-dark .mobile-nav{background:#1A1A1C;border-color:#303033}
-/* Prevent icon glyphs from falling back to the old letter abbreviations. */
+/* Cores de status/tema agora vivem só nos tokens de styles.css (ver Ciclo 1). */
+/* Evita que o glifo do ícone caia de volta para a sigla antiga. */
 .module-icon:empty{display:none}

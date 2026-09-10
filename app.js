@@ -40,10 +40,10 @@ function shell(){
   return `<div class="shell">
     <aside class="sidebar">
       <button class="brand" onclick="route('dashboard')" aria-label="Ir para visão geral">
-        <div class="mark">O</div>
-        <div><strong>OCULTO</strong><span>ERP</span></div>
+        <div class="mark">E</div>
+        <div><strong>ESTELAR</strong><span>ERP</span></div>
       </button>
-      <div class="sidebar-search" onclick="toggleSearch(true)"><span>⌕</span><span>Pesquisar no OCULTO</span><kbd>⌘ K</kbd></div>
+      <div class="sidebar-search" onclick="toggleSearch(true)"><span>⌕</span><span>Pesquisar no ESTELAR</span><kbd>⌘ K</kbd></div>
       <div class="sidebar-nav">${nav()}</div>
       <div class="side-bottom">
         <div class="environment"><i></i><span>Ambiente de estudo</span></div>
@@ -53,7 +53,7 @@ function shell(){
 
     <main class="main">
       <header class="topbar">
-        <div class="breadcrumbs"><span>OCULTO ERP</span><b>/</b><strong>${active.title}</strong></div>
+        <div class="breadcrumbs"><span>ESTELAR ERP</span><b>/</b><strong>${active.title}</strong></div>
         <div class="actions">
           <button class="search-top" onclick="toggleSearch(true)"><span>Pesquisar</span><kbd>⌘ K</kbd></button>
           <button class="theme-btn" onclick="route('settings')">Aparência</button>
@@ -137,7 +137,7 @@ function dashboard(){
     </article>
   </div>
 
-  <div class="module-strip"><div><span class="section-label">ECOSSISTEMA</span><h2>Módulos do OCULTO</h2></div><span class="module-count">11 módulos estruturados</span></div>
+  <div class="module-strip"><div><span class="section-label">ECOSSISTEMA</span><h2>Módulos do ESTELAR</h2></div><span class="module-count">11 módulos estruturados</span></div>
   <div class="module-overview">${modules.filter(m=>!['dashboard','settings'].includes(m.id)).map(m=>`<button class="module-tile" onclick="route('${m.id}')">${icon(m.icon)}<span><b>${m.label}</b><small>${m.desc}</small></span><i>↗</i></button>`).join('')}</div>`;
 }
 
@@ -168,9 +168,9 @@ function cardsFor(id){
 
 function settings(){
   const theme=localStorage.getItem('oculto-theme')||'system';
-  return `<div class="module-head"><div><div class="eyebrow">ADMINISTRAÇÃO</div><h1>Configurações</h1><p>Preferências gerais do OCULTO ERP.</p></div></div>
+  return `<div class="module-head"><div><div class="eyebrow">ADMINISTRAÇÃO</div><h1>Configurações</h1><p>Preferências gerais do ESTELAR ERP.</p></div></div>
   <article class="card settings-card">
-    <div class="setting"><div><strong>Aparência</strong><span>Escolha como o OCULTO deve aparecer.</span></div><div class="theme-options">${['light','dark','system'].map(t=>`<button class="${theme===t?'active':''}" onclick="setTheme('${t}')">${t==='light'?'Claro':t==='dark'?'Escuro':'Sistema'}</button>`).join('')}</div></div>
+    <div class="setting"><div><strong>Aparência</strong><span>Escolha como o ESTELAR deve aparecer.</span></div><div class="theme-options">${['light','dark','system'].map(t=>`<button class="${theme===t?'active':''}" onclick="setTheme('${t}')">${t==='light'?'Claro':t==='dark'?'Escuro':'Sistema'}</button>`).join('')}</div></div>
     <div class="setting"><div><strong>Empresa</strong><span>Empresa principal e parâmetros operacionais.</span></div><button class="btn ghost" onclick="notifyDemo()">Configurar</button></div>
     <div class="setting"><div><strong>Ambiente fiscal</strong><span>Simulação educacional. Nenhuma informação é transmitida à SEFAZ.</span></div><span class="setting-badge">SIMULADO</span></div>
   </article>`;

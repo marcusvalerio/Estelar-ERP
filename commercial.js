@@ -1,4 +1,4 @@
-/* OCULTO ERP — Fase 4: Comercial */
+/* ESTELAR-ERP — Fase 4: Comercial */
 (function(){
   const KEYS={customers:'oculto-commercial-customers-v1',products:'oculto-commercial-products-v1',quotes:'oculto-commercial-quotes-v1',orders:'oculto-commercial-orders-v1',finance:'oculto-finance-v1'};
   const read=k=>{try{const x=JSON.parse(localStorage.getItem(k));return Array.isArray(x)?x:[]}catch{return[]}};
@@ -21,6 +21,6 @@
   window.commercialSaveQuote=e=>{e.preventDefault();const f=new FormData(e.target),d=data(),c=d.customers.find(x=>x.id===f.get('customer')),p=d.products.find(x=>x.id===f.get('product'));if(!c||!p)return alert('Cadastre cliente e produto antes do orçamento.');const qty=Number(f.get('qty')),total=qty*p.price;d.quotes.unshift({id:uid('ORC'),customerId:c.id,customerName:c.name,productId:p.id,productName:p.name,qty,total,validUntil:f.get('validUntil'),created:new Date().toISOString().slice(0,10),status:'sent',statusLabel:'Enviado'});write(KEYS.quotes,d.quotes);commercialClose();current='quotes';render()};
   window.commercialInvoice=id=>{const d=data(),o=d.orders.find(x=>x.id===id);if(!o)return;const finance=read(KEYS.finance);if(!finance.some(x=>x.sourceId===id)){finance.unshift({id:uid('FIN'),sourceId:id,type:'receivable',description:'Pedido '+id,party:o.customerName,value:o.total,date:new Date().toISOString().slice(0,10),due:new Date(Date.now()+30*86400000).toISOString().slice(0,10),status:'open'});write(KEYS.finance,finance)}o.status='invoiced';o.statusLabel='Faturado';write(KEYS.orders,d.orders);current='financial';render()};
   window.commercialFilter=(input,cls)=>{const q=input.value.toLowerCase();document.querySelectorAll('.'+cls).forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'grid':'none')};
-  window.commercialExport=type=>{const rows=data()[type],csv=Object.keys(rows[0]||{}).join(',')+'\n'+rows.map(x=>Object.values(x).map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n'),u=URL.createObjectURL(new Blob([csv],{type:'text/csv'})),a=document.createElement('a');a.href=u;a.download='oculto-'+type+'.csv';a.click();URL.revokeObjectURL(u)};
+  window.commercialExport=type=>{const rows=data()[type],csv=Object.keys(rows[0]||{}).join(',')+'\n'+rows.map(x=>Object.values(x).map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\n'),u=URL.createObjectURL(new Blob([csv],{type:'text/csv'})),a=document.createElement('a');a.href=u;a.download='estelar-'+type+'.csv';a.click();URL.revokeObjectURL(u)};
   const originalModuleView=window.moduleView;window.moduleView=m=>{if(m.id==='customers')return customersView();if(m.id==='products')return productsView();if(m.id==='quotes')return quotesView();if(m.id==='orders')return ordersView();return originalModuleView(m)};
 })();

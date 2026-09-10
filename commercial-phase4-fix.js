@@ -1,4 +1,4 @@
-/* OCULTO ERP — Fase 4 integration layer */
+/* ESTELAR-ERP — Fase 4 integration layer */
 (function(){
  const K={c:'oculto-commercial-customers-v1',p:'oculto-commercial-products-v1',q:'oculto-commercial-quotes-v1',o:'oculto-commercial-orders-v1',f:'oculto-finance-v1'};
  const read=k=>{try{const x=JSON.parse(localStorage.getItem(k));return Array.isArray(x)?x:[]}catch{return[]}};const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v)||0);const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));

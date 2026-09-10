@@ -1,4 +1,4 @@
-/* OCULTO ERP — Fase 3: acabamento funcional do Financeiro */
+/* ESTELAR-ERP — Fase 3: acabamento funcional do Financeiro */
 (function(){
   const KEY='oculto-finance-v1';
   const getData=()=>{try{const x=JSON.parse(localStorage.getItem(KEY));return Array.isArray(x)?x:[]}catch{return[]}};
